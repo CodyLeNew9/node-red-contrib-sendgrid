@@ -19,6 +19,7 @@ module.exports = function (RED) {
                 bcc: (msg.bcc || '').split(/[,; ]+/g),
                 subject: msg.topic || msg.title || 'Message from Node-RED',
                 templateId: config.templateId || msg.templateId,
+                asm: {groupId: msg.unsubscribeId}, //Set unsubscribe group ID
                 dynamic_template_data: (data => typeof data === 'object' ? data : JSON.parse(data))(config.templateData || msg.templateData || '{}'),
             };
             if(!config.templateId) {
